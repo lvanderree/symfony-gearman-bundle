@@ -2,7 +2,7 @@
 
 namespace Laelaps\GearmanBundle;
 
-class LogClient
+class LogClient extends \GearmanClient
 {
     /**
      * Store all calls from different gearman clients
@@ -35,7 +35,7 @@ class LogClient
      * @param int $port
      * @return boolean
      */
-    public function addServer($host, $port)
+    public function addServer($host = NULL, $port = NULL, $enableExceptionHandler = NULL)
     {
         $start = microtime(true);
         $result = $this->client->addServer($host, $port);

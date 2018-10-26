@@ -40,9 +40,11 @@ class AddWorkerHandlerCompilerPass implements CompilerPassInterface
                 $container->setDefinition($definitionId, $newConsumerDefinition);
 
                 // add definition as a console command
-                $consoleCommands = $container->getParameter('console.command.ids');
-                $consoleCommands[] = $definitionId;
-                $container->setParameter('console.command.ids', $consoleCommands);
+                if ($container->hasParameter('console.command.ids')) {
+                    $consoleCommands = $container->getParameter('console.command.ids');
+                    $consoleCommands[] = $definitionId;
+                    $container->setParameter('console.command.ids', $consoleCommands);
+                }
             }
         }
     }
